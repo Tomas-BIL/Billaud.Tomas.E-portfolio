@@ -1,0 +1,6 @@
+﻿Dépose ici tes photos (JPG). Elles apparaissent automatiquement sur le site, sans autre modification :
+
+  moto.jpg             -> onglet "Passions", section Moto (photo de ta moto)
+  bdd-1.jpg, bdd-2.jpg -> onglet "Engagements", fiche du Bureau du Développement Durable
+
+Une photo absente est simplement ignorée. Idéal : format paysage (4/3), moins de 400 Ko chacune.
