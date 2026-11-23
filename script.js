@@ -71,14 +71,20 @@ tabs.forEach(t => {
 document.querySelectorAll('[data-tab-link]').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        const id = link.dataset.tabLink;
+        const tabId = link.dataset.tabLink;
+        const scrollTargetId = link.dataset.scrollTarget;
+
         if (body.classList.contains('show-all')) {
-            const el = document.getElementById(id);
+            const el = document.getElementById(scrollTargetId || tabId);
             if (el) el.scrollIntoView({ behavior: 'smooth' });
         } else {
-            showTab(id, true);
+            showTab(tabId, !scrollTargetId);
+            if (scrollTargetId) {
+                const el = document.getElementById(scrollTargetId);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }
         }
-        if (history.replaceState) history.replaceState(null, '', '#' + id);
+        if (history.replaceState) history.replaceState(null, '', '#' + (scrollTargetId || tabId));
     });
 });
 
@@ -86,17 +92,32 @@ if (allToggle) {
     allToggle.addEventListener('click', () => {
         if (body.classList.contains('show-all')) {
             const current = (location.hash || '#accueil').slice(1);
-            showTab(current, true);
+            const targetPanel = document.querySelector(`.tab-panel[data-panel="${current}"]`)
+                ? current
+                : 'accueil';
+            showTab(targetPanel, true);
         } else {
             showAll();
         }
     });
 }
 
-// Initialisation selon le hash éventuel (#projets, #parcours, etc.)
+// Initialisation selon le hash éventuel (#ppp, #mobilite, #contact, etc.)
 const initialHash = (location.hash || '').slice(1);
-if (initialHash && document.querySelector(`.tab-panel[data-panel="${initialHash}"]`)) {
-    showTab(initialHash, false);
+if (initialHash) {
+    const directPanel = document.querySelector(`.tab-panel[data-panel="${initialHash}"]`);
+    if (directPanel) {
+        showTab(initialHash, false);
+    } else {
+        const targetEl = document.getElementById(initialHash);
+        const parentPanel = targetEl ? targetEl.closest('.tab-panel[data-panel]') : null;
+        if (parentPanel) {
+            showTab(parentPanel.dataset.panel, false);
+            requestAnimationFrame(() => targetEl.scrollIntoView({ behavior: 'auto' }));
+        } else {
+            showTab('accueil', false);
+        }
+    }
 } else {
     showTab('accueil', false);
 }

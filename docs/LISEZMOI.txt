@@ -1,0 +1,12 @@
+Documents PDF de l'onglet « PPP & Carrière » :
+
+Déjà en place et liés dans index.html :
+  Offre_CERN_Openlab_2027.pdf       -> Fiche offre vérifiée CERN OPENLAB 2027
+  Lettre_Motivation_CERN_EN.pdf     -> Lettre de motivation EN (CERN)
+  Offre_Ducati_RD_Engine_Testing.pdf-> Fiche offre vérifiée Ducati R&D (Req #626)
+  Lettre_Motivation_Ducati_EN.pdf   -> Lettre de motivation EN (Ducati)
+  Lettre_Motivation_XXII_FR.pdf     -> Lettre de motivation FR au format AFNOR NF Z11-001 (XXII)
+
+À déposer dès finalisation :
+  PPP_Presentation_Janvier_2027.pdf -> Support de présentation orale PPP (6 à 7 slides max.)
+  Certificat_MJG.pdf                -> Certificat My Job Glasses (optionnel)
